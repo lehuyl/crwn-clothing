@@ -1,0 +1,23 @@
+import React from 'react';
+import { Section } from '../../common/types';
+import './MenuItem.scss';
+
+const MenuItem = ({ title, imageUrl, size }: Section) => {
+    return (
+        // MenuItem
+        <div
+            className={`${size} menu-item flex flex-auto mx-2 mb-4 min-w-30 h-64 items-center justify-center border border-black bg-center bg-cover`}
+            style={{
+                backgroundImage: `url(${imageUrl})`,
+            }}
+        >
+            <div className="flex flex-col h-20 px-4 items-center justify-center border border-black">
+                <h1 className="font-bold mb-2 text-2xl text-gray-500">
+                    {title?.toUpperCase()}
+                </h1>
+                <span className="font-light text-lg">SHOP NOW</span>
+            </div>
+        </div>
+    );
+};
+export default MenuItem;
