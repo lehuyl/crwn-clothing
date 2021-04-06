@@ -5,11 +5,20 @@ module.exports = {
         minWidth: {
             '30': '30%',
         },
-        extend: {},
+        extend: {
+            transitionDuration: {
+                '6000': '6000ms'
+            },
+            transitionTimingFunction: {
+                'in-out-udemy': 'cubic-bezier(0.25, 0.45, 0.45, 0.95)',
+            }
+        },
     },
     variants: {
         extend: {
-            gridTemplateColumns: ['hover', 'focus'],
+            transform: ['hover', 'focus'],
+            transitionDuration: ['hover', 'focus'],
+            transitionTimingFunction: ['hover', 'focus']
         },
     },
     plugins: [],
