@@ -1,14 +1,17 @@
 import React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Section } from '../../common/types';
 import './MenuItem.scss';
 
-const MenuItem = ({ title, imageUrl, size }: Section) => {
+const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }: Section & RouteComponentProps<any>) => {
     return (
         // MenuItem
         <div
             className={`${size} menu-item flex flex-auto mx-2 mb-4 min-w-30 h-64 items-center justify-center border border-black overflow-hidden`}
+            onClick={() => history.push(`${match.url}${linkUrl}`)}
         >
             <div
+            
                 className="h-full w-full bg-center bg-cover background-image"
                 style={{
                     backgroundImage: `url(${imageUrl})`,
@@ -24,4 +27,4 @@ const MenuItem = ({ title, imageUrl, size }: Section) => {
         </div>
     );
 };
-export default MenuItem;
+export default withRouter(MenuItem);
