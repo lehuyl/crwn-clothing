@@ -31,7 +31,7 @@ class SignIn extends React.Component<{}, SignInState> {
 
     render() {
         return (
-            <div className="flex flex-col w-30vw">
+            <div className="flex flex-col w-96">
                 <h2 className="text-2xl font-semibold text-gray-700">
                     I already have an account.
                 </h2>
@@ -54,8 +54,13 @@ class SignIn extends React.Component<{}, SignInState> {
                         label="password"
                         required
                     />
-                    <CustomButton type='submit'> Sign in </CustomButton>
-                    <CustomButton onClick={signInWithGoogle}> Sign in with Google</CustomButton>
+                    <div className="flex justify-between">
+                        <CustomButton type="submit"> Sign in </CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                            {' '}
+                            Sign in with Google
+                        </CustomButton>
+                    </div>
                 </form>
             </div>
         );

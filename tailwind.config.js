@@ -11,9 +11,6 @@ module.exports = {
             },
             transitionTimingFunction: {
                 'in-out-udemy': 'cubic-bezier(0.25, 0.45, 0.45, 0.95)',
-            },
-            width: {
-                '30vw': '30vw'
             }
         },
     },
