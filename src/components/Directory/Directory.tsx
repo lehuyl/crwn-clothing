@@ -7,8 +7,8 @@ interface State {
 }
 
 class Directory extends React.Component<{}, State> {
-    constructor() {
-        super({});
+    constructor(props: {}) {
+        super(props);
 
         this.state = {
             sections: [
