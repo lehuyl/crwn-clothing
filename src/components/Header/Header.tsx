@@ -2,14 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import firebase from 'firebase/app';
 import { auth } from '../../firebase/firebase.utils';
 
-interface Props {
-    currentUser: firebase.User | null;
-}
-
-const Header = ({ currentUser }: Props) => (
+const Header = ({ currentUser }: any) => (
     <div className="flex h-20 w-full justify-between mb-4">
         <Link to="/">
             <Logo className="h-full w-20 p-6" />
