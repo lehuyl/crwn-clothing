@@ -3,6 +3,8 @@ import { signInWithGoogle } from '../../firebase/firebase.utils';
 import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
 
+import './SignIn.scss';
+
 interface SignInState {
     email: string;
     password: string;
@@ -31,8 +33,8 @@ class SignIn extends React.Component<{}, SignInState> {
 
     render() {
         return (
-            <div className="flex flex-col w-96">
-                <h2 className="text-2xl font-semibold text-gray-700">
+            <div className="sign-in">
+                <h2 className="text-2xl font-semibold text-gray-700 my-2">
                     I already have an account.
                 </h2>
                 <span>Sign in with your email and password</span>
@@ -43,7 +45,7 @@ class SignIn extends React.Component<{}, SignInState> {
                         type="email"
                         handleChange={this.handleChange}
                         value={this.state.email}
-                        label="email"
+                        label="Email"
                         required
                     />
                     <FormInput
@@ -51,7 +53,7 @@ class SignIn extends React.Component<{}, SignInState> {
                         type="password"
                         value={this.state.password}
                         handleChange={this.handleChange}
-                        label="password"
+                        label="Password"
                         required
                     />
                     <div className="flex justify-between">
