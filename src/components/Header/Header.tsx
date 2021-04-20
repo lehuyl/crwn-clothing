@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { RootState } from '../../redux/store';
+import CartIcon from '../CartIcon/CartIcon';
 
 const Header = ({ currentUser }: any) => (
     <div className="flex h-20 w-full justify-between mb-4">
@@ -30,6 +31,7 @@ const Header = ({ currentUser }: any) => (
                     SIGN IN
                 </Link>
             )}
+            <CartIcon />
         </div>
     </div>
 );
