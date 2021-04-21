@@ -7,7 +7,8 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import AuthenticationPage from './pages/Authentication/AuthenticationPage';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/Shop/ShopPage';
-import { setCurrentUser } from './redux/User/user.actions';
+import { RootState } from './redux/store';
+import { setCurrentUser } from './redux/User/UserAction';
 
 class App extends React.Component<any, any> {
     unsubscribeFromAuth: any = null;
@@ -25,7 +26,6 @@ class App extends React.Component<any, any> {
                     });
                 });
             }
-
             setCurrentUser(userAuth);
         });
     }
@@ -41,16 +41,25 @@ class App extends React.Component<any, any> {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/shop" component={ShopPage} />
-                    <Route path="/sign-in" render={() => this.props.currentUser ? <Redirect to="/" /> : <AuthenticationPage />} />
+                    <Route
+                        path="/sign-in"
+                        render={() =>
+                            this.props.currentUser ? (
+                                <Redirect to="/" />
+                            ) : (
+                                <AuthenticationPage />
+                            )
+                        }
+                    />
                 </Switch>
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ user } : any) => ({
-    currentUser: user.currentUser
-})
+const mapStateToProps = ({ user: { currentUser }}: RootState) => ({
+    currentUser
+});
 
 const mapDispatchToProps = (dispatch: any) => ({
     setCurrentUser: (user: any) => dispatch(setCurrentUser(user)),
