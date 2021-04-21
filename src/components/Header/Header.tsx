@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { RootState } from '../../redux/store';
+import CartDropdown from '../CartDropdown/CartDropdown';
 import CartIcon from '../CartIcon/CartIcon';
 
-const Header = ({ currentUser }: any) => (
+const Header = ({ currentUser, isVisible }: any) => (
     <div className="flex h-20 w-full justify-between mb-4">
         <Link to="/">
             <Logo className="h-full w-20 p-6" />
@@ -33,9 +34,14 @@ const Header = ({ currentUser }: any) => (
             )}
             <CartIcon />
         </div>
+        {isVisible ? <CartDropdown /> : null}
     </div>
 );
-const mapStateToProps = (state: RootState) => ({
-    currentUser: state.user.currentUser,
+const mapStateToProps = ({
+    user: { currentUser },
+    cartDropdown: { isVisible },
+}: RootState) => ({
+    currentUser,
+    isVisible,
 });
 export default connect(mapStateToProps)(Header);
