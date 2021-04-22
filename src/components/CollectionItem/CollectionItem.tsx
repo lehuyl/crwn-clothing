@@ -1,5 +1,6 @@
 import React from 'react';
 import { Item } from '../../common/types';
+import CustomButton from '../CustomButton/CustomButton';
 import './CollectionItem.scss'
 
 const CollectionItem = ({ name, price, imageUrl }: Item) => (
@@ -8,10 +9,11 @@ const CollectionItem = ({ name, price, imageUrl }: Item) => (
             className="image"
             style={{ backgroundImage: `url(${imageUrl})` }}
         />
-        <div className="flex w-full h-1/6 justify-between text-lg">
-            <span className="w-11/12 mb-2">{name}</span>
-            <span className="w-1/12">{price}</span>
+        <div className="collection-footer">
+            <span className="name">{name}</span>
+            <span className="price">{price}</span>
         </div>
+        <CustomButton inverted>Add to cart</CustomButton>
     </div>
 );
 export default CollectionItem;
