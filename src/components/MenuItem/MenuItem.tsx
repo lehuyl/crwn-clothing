@@ -7,7 +7,7 @@ const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }: Section & 
     return (
         // MenuItem
         <div
-            className={`${size} menu-item flex flex-auto mx-2 mb-4 min-w-3/10 h-64 items-center justify-center border border-black overflow-hidden`}
+            className={`${size} menu-item flex flex-auto mx-2 mb-4 min-w-3/10 h-96 items-center justify-center border border-black overflow-hidden`}
             onClick={() => history.push(`${match.url}${linkUrl}`)}
         >
             <div
