@@ -12,5 +12,5 @@ const CartIcon = ({ toggleCartVisibility }: any) => (
 );
 const mapDispatchToProps = (dispatch: any) => ({
     toggleCartVisibility: () => dispatch(toggleCartDropdownVisibility())
-})
+});
 export default connect(null, mapDispatchToProps)(CartIcon);
