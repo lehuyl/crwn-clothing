@@ -13,8 +13,8 @@ const CollectionPreview: React.FunctionComponent<Props> = ({ title, items }: Pro
         <div className="flex justify-between">
             {items
                 .filter((item: Item, idx: number) => idx < 4)
-                .map(({ id, ...otherItemProps}: Item) => (
-                    <CollectionItem key={id} {...otherItemProps} />
+                .map((item: Item) => (
+                    <CollectionItem key={item.id} item={item} />
                 ))}
         </div>
     </div>
