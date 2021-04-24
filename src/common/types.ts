@@ -19,7 +19,7 @@ export interface Item {
     price: number;
 }
 
-export interface CartItem {
+export interface ICartItem {
     item: Item,
     quantity: number
 }

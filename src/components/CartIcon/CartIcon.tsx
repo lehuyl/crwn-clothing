@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
-import { toggleCartDropdownVisibility } from '../../redux/CartDropdown/CartDropdownActions';
+import { toggleCartDropdownVisibility } from '../../redux/Cart/CartActions';
 import './CartIcon.scss';
 
 const CartIcon = ({ toggleCartVisibility }: any) => (
