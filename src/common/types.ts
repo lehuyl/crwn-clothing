@@ -18,3 +18,8 @@ export interface Item {
     imageUrl: string;
     price: number;
 }
+
+export interface CartItem {
+    item: Item,
+    quantity: number
+}
