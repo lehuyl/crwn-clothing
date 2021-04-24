@@ -39,7 +39,7 @@ const Header = ({ currentUser, isVisible }: any) => (
 );
 const mapStateToProps = ({
     user: { currentUser },
-    cartDropdown: { isVisible },
+    cart: { isVisible },
 }: RootState) => ({
     currentUser,
     isVisible,
