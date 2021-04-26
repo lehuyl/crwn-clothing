@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ICartItem } from '../../common/types';
+import { Product } from '../../common/types';
+import { selectCartItems } from '../../redux/Cart/CartSelector';
 import { RootState } from '../../redux/store';
 import CartItem from '../CartItem/CartItem';
 import CustomButton from '../CustomButton/CustomButton';
 import './CartDropdown.scss';
 
 interface Props {
-    cartItems: { [id: string]: ICartItem };
+    cartItems: { [id: string]: Product };
 }
 
 const CartDropdown = ({ cartItems }: Props) => (
@@ -21,7 +22,7 @@ const CartDropdown = ({ cartItems }: Props) => (
     </div>
 );
 
-const mapStateToProps = ({ cart: { cartItems } }: RootState) => ({
-    cartItems,
+const mapStateToProps = (state: RootState) => ({
+    cartItems: selectCartItems(state),
 });
 export default connect(mapStateToProps)(CartDropdown);

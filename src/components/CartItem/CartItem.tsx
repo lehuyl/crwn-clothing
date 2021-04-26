@@ -1,9 +1,9 @@
 import React from 'react';
-import { ICartItem } from '../../common/types';
+import { Product } from '../../common/types';
 
 import './CartItem.scss';
 
-const CartItem = ({ item: { imageUrl, price, name}, quantity }: ICartItem) => (
+const CartItem = ({ item: { imageUrl, price, name}, quantity }: Product) => (
     <div className="cart-item">
         <img src={imageUrl} alt='item' />
         <div className="item-details">

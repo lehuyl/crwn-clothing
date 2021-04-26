@@ -1,9 +1,9 @@
-import { ICartItem } from '../../common/types';
-import { CartTypes } from './CartActions';
+import { Product } from '../../common/types';
+import { CartTypes } from './CartAction';
 
-interface CartState {
+export interface CartState {
     isVisible: boolean;
-    cartItems: { [id: string]: ICartItem };
+    cartItems: { [id: string]: Product };
 }
 
 const INITIAL_CART_STATE: CartState = {
