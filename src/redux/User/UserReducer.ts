@@ -1,6 +1,10 @@
 import { UserActionTypes } from "./UserAction";
 
-const INITIAL_USER_STATE = {
+export interface UserState {
+    currentUser: any
+}
+
+const INITIAL_USER_STATE: UserState = {
     currentUser: null
 }
 
