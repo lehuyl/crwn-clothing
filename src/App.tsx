@@ -5,10 +5,12 @@ import './App.scss';
 import Header from './components/Header/Header';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import AuthenticationPage from './pages/Authentication/AuthenticationPage';
+import CheckoutPage from './pages/Checkout/CheckoutPage';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/Shop/ShopPage';
 import { RootState } from './redux/store';
 import { setCurrentUser } from './redux/User/UserAction';
+import { selectCurrentUser } from './redux/User/UserSelector';
 
 class App extends React.Component<any, any> {
     unsubscribeFromAuth: any = null;
@@ -41,6 +43,7 @@ class App extends React.Component<any, any> {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/shop" component={ShopPage} />
+                    <Route exact path="/checkout" component={CheckoutPage} />
                     <Route
                         path="/sign-in"
                         render={() =>
@@ -57,8 +60,8 @@ class App extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = ({ user: { currentUser }}: RootState) => ({
-    currentUser
+const mapStateToProps = (state: RootState) => ({
+    currentUser: selectCurrentUser(state)
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

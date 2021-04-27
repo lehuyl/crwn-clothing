@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
-import { RootState } from '../../redux/store';
+import { selectCartVisibility } from '../../redux/Cart/CartSelector';
+import { selectCurrentUser } from '../../redux/User/UserSelector';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import CartIcon from '../CartIcon/CartIcon';
 
@@ -37,11 +39,8 @@ const Header = ({ currentUser, isVisible }: any) => (
         {isVisible ? <CartDropdown /> : null}
     </div>
 );
-const mapStateToProps = ({
-    user: { currentUser },
-    cart: { isVisible },
-}: RootState) => ({
-    currentUser,
-    isVisible,
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    isVisible: selectCartVisibility,
 });
 export default connect(mapStateToProps)(Header);
