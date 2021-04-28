@@ -27,6 +27,11 @@ export const cartReducer = (state = INITIAL_CART_STATE, action: any) => {
                 : { item, quantity: 1 };
                 
             return {...state, cartItems};
+        case CartTypes.REMOVE_ITEM:
+            const id = action.payload;
+            const { [id]: _, ...otherCartIems } = state.cartItems;
+
+            return {...state, cartItems: otherCartIems};
         default:
             return state;
     }
