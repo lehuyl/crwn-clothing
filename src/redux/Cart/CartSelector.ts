@@ -31,7 +31,7 @@ export const selectCartTotal = createSelector(
     (cartItems: { [id: string]: Product }) => {
         return Object.values(cartItems).reduce(
             (accumulatedTotal: number, cartItem: Product) =>
-                accumulatedTotal + cartItem.item.price,
+                accumulatedTotal + cartItem.item.price * cartItem.quantity,
             0,
         );
     },
