@@ -8,7 +8,7 @@ import { RootState } from '../../redux/store';
 import './CollectionPage.scss';
 
 interface Props {
-    collection: Collection | undefined;
+    collection: Collection | null;
 }
 
 const CollectionPage = ({ collection }: Props) => {
