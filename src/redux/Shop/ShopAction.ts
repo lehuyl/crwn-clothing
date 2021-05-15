@@ -3,7 +3,7 @@ import {
     convertCollectionsSnapshotToMap,
     firestore,
 } from '../../firebase/firebase.utils';
-import { AppDispatch, AppThunk } from '../store';
+import { AppDispatch } from '../store';
 
 export const ShopActionTypes = {
     FETCH_COLLECTIONS_START: 'shop/fetch-collections-start',
@@ -27,7 +27,7 @@ export const fetchCollectionsFailure = (error: any) => ({
     payload: error,
 });
 
-export const fetchCollectionsStartAsync = (): AppThunk => {
+export const fetchCollectionsStartAsync = () => {
     return (dispatch: AppDispatch) => {
         const collectionRef = firestore.collection('collections');
         dispatch(fetchCollectionsStart());
