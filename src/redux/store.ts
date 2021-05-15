@@ -1,24 +1,23 @@
-import { createStore, applyMiddleware, Store, Action } from 'redux';
+import { createStore, applyMiddleware, Store } from 'redux';
 import { persistStore } from 'redux-persist';
 import logger from 'redux-logger';
 import rootReducer from './RootReducer';
 import { Persistor } from 'redux-persist/es/types';
-import thunk, { ThunkAction } from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { fetchCollectionsStart } from './Shop/ShopSaga';
 
-const middlewares = [thunk];
+const sagaMiddleware = createSagaMiddleware();
 
-if (process.env.NODE_ENV === 'development') middlewares.push(logger as any);
+const middlewares: any = [sagaMiddleware];
+
+if (process.env.NODE_ENV === 'development') middlewares.push(logger);
 
 export const store: Store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+sagaMiddleware.run(fetchCollectionsStart);
 
 export const persistor: Persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
