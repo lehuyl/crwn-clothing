@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { auth } from '../../firebase/firebase.utils';
 import { selectCartVisibility } from '../../redux/Cart/CartSelector';
+import { signOutStart } from '../../redux/User/UserAction';
 import { selectCurrentUser } from '../../redux/User/UserSelector';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import CartIcon from '../CartIcon/CartIcon';
 
-const Header = ({ currentUser, isVisible }: any) => (
+const Header = ({ currentUser, isVisible, signOutStart }: any) => (
     <div className="flex h-20 w-full justify-between mb-4">
         <Link to="/">
             <Logo className="h-full w-20 p-6" />
@@ -25,7 +25,7 @@ const Header = ({ currentUser, isVisible }: any) => (
             {currentUser ? (
                 <div
                     className="py-2 px-4 cursor-pointer"
-                    onClick={() => auth.signOut()}
+                    onClick={signOutStart}
                 >
                     SIGN OUT
                 </div>
@@ -43,4 +43,9 @@ const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     isVisible: selectCartVisibility,
 });
-export default connect(mapStateToProps)(Header);
+
+const mapDispatchToProps = (dispatch: any) => ({
+    signOutStart: () => dispatch(signOutStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -8,16 +8,13 @@ import CheckoutPage from './pages/Checkout/CheckoutPage';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/Shop/ShopPage';
 import { RootState } from './redux/store';
+import { checkUserSession } from './redux/User/UserAction';
 import { selectCurrentUser } from './redux/User/UserSelector';
 
 class App extends React.Component<any, any> {
-    unsubscribeFromAuth: any = null;
-
     componentDidMount() {
-    }
-
-    componentWillUnmount() {
-        this.unsubscribeFromAuth();
+        const { checkUserSession } = this.props;
+        checkUserSession();
     }
 
     render() {
@@ -45,7 +42,11 @@ class App extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    currentUser: selectCurrentUser(state)
+    currentUser: selectCurrentUser(state),
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch: any) => ({
+    checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
