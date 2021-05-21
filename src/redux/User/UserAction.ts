@@ -1,3 +1,5 @@
+import { SignUpDto } from './UserDto';
+
 interface UserCredentials {
     email: string;
     password: string;
@@ -12,6 +14,9 @@ export const UserActionTypes = {
     SIGN_OUT_START: 'SIGN_OUT_START',
     SIGN_OUT_SUCCESS: 'SIGN_OUT_SUCCESS',
     SIGN_OUT_FAILURE: 'SIGN_OUT_FAILURE',
+    SIGN_UP_START: 'SIGN_UP_START',
+    SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
+    SIGN_UP_FAILURE: 'SIGN_UP_FAILURE',
 };
 
 export const googleSignInStart = () => ({
@@ -47,5 +52,20 @@ export const signOutSuccess = () => ({
 
 export const signOutFailure = (error: any) => ({
     type: UserActionTypes.SIGN_OUT_FAILURE,
+    payload: error,
+});
+
+export const signUpStart = (signUpDto: SignUpDto) => ({
+    type: UserActionTypes.SIGN_UP_START,
+    payload: signUpDto,
+});
+
+export const signUpSuccess = ({ user, additionalData }: any) => ({
+    type: UserActionTypes.SIGN_UP_SUCCESS,
+    payload: { user, additionalData },
+});
+
+export const signUpFailure = (error: any) => ({
+    type: UserActionTypes.SIGN_UP_FAILURE,
     payload: error,
 });
