@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
 import './App.scss';
@@ -11,35 +11,32 @@ import { RootState } from './redux/store';
 import { checkUserSession } from './redux/User/UserAction';
 import { selectCurrentUser } from './redux/User/UserSelector';
 
-class App extends React.Component<any, any> {
-    componentDidMount() {
-        const { checkUserSession } = this.props;
+const App = ({ checkUserSession, currentUser }: any) => {
+    useEffect(() => {
         checkUserSession();
-    }
+    }, [checkUserSession]);
 
-    render() {
-        return (
-            <div>
-                <Header />
-                <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route path="/shop" component={ShopPage} />
-                    <Route exact path="/checkout" component={CheckoutPage} />
-                    <Route
-                        path="/sign-in"
-                        render={() =>
-                            this.props.currentUser ? (
-                                <Redirect to="/" />
-                            ) : (
-                                <AuthenticationPage />
-                            )
-                        }
-                    />
-                </Switch>
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <Header />
+            <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route path="/shop" component={ShopPage} />
+                <Route exact path="/checkout" component={CheckoutPage} />
+                <Route
+                    path="/sign-in"
+                    render={() =>
+                        currentUser ? (
+                            <Redirect to="/" />
+                        ) : (
+                            <AuthenticationPage />
+                        )
+                    }
+                />
+            </Switch>
+        </div>
+    );
+};
 
 const mapStateToProps = (state: RootState) => ({
     currentUser: selectCurrentUser(state),
